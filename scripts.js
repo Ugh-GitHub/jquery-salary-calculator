@@ -9,9 +9,9 @@ function onReady() {
     $( '#submitEmployee' ).on('click',processInput);
 
     // button to toggle deleting employee buttons
-    $( '#delEmployeeToggle').on('click',deleteToggle);
+    //$( '#delEmployeeToggle').on('click',deleteToggle);
     // button to delete employees
-
+    $( '#employeeInfoTable').on('click','.delEmployee',deleteRow);
 }
 
 function processInput() {
@@ -171,32 +171,15 @@ function updateTableDOM(empObj) {
     // "employeeInfoTable"
     console.log('in Update Table DOM');
 
-    let myTable = document.getElementById("employeeInfoTable");
 
-    $('#employeeInfoTable').append(`<tr id='${empList.length}'>
-        <th>${empObj.firstName}</th>
-        <th>${empObj.lastName}</th>
-        <th>${empObj.idNumber}</th>
-        <th>${empObj.jobTitle}</th>
-        <th>${empObj.annualSalary}</th>
-    </tr>`)
-
-    // let myTable = document.getElementById("employeeInfoTable");
-
-    // let newRow = myTable.insertRow(-1);
-
-    // newRow.innerHTML(`<tr id='${myTable.rows.length}'></tr>`);
-    
-    // let newCell1 = newRow.insertCell(0);
-    // let newCell2 = newRow.insertCell(1);
-    // let newCell3 = newRow.insertCell(2);
-    // let newCell4 = newRow.insertCell(3);
-    // let newCell5 = newRow.insertCell(4);
-    // newCell1.innerHTML = empObj.firstName;
-    // newCell2.innerHTML = empObj.lastName;
-    // newCell3.innerHTML = empObj.idNumber;
-    // newCell4.innerHTML = empObj.jobTitle;
-    // newCell5.innerHTML = empObj.annualSalary; 
+    $('#employeeInfoTable').append(`<tr id='${empList.length}' class='row'>
+        <td>${empObj.firstName}</td>
+        <td>${empObj.lastName}</td>
+        <td>${empObj.idNumber}</td>
+        <td>${empObj.jobTitle}</td>
+        <td>${empObj.annualSalary}</td>
+        <td><button class="delEmployee">Delete Employee</button></td>
+    </tr>`);
     return true;
 }
 
@@ -235,13 +218,28 @@ function checkCosts(cost) {
     return true;
 }
 
-function deleteToggle() {
-    console.log('in deleteToggle');
-    let myTable = document.getElementById("employeeInfoTable");
-    $('table#employeeInfoTable tr#1').remove();
-    // for (let i = 1; i < myTable.rows.length; i++) {
-    //     console.log("row",i,"accounted for");
-    //     myTable.row[i].append('<button id="delEmployee">Delete Employee</button>')
-    // }
-    console.log($("#employeeInfoTable tr").length);
+// function deleteToggle() {
+//     console.log('in deleteToggle');
+    
+    
+//     for (let i = 1; i <= empList.length; i++) {
+//         console.log($(`table#employeeInfoTable tr#${[i]}`).length);
+//         $(`table#employeeInfoTable tr#${[i]}`).append('<button class="delEmployee">Delete Employee</button>');
+        
+        
+//     }
+
+        
+    
+    
+//     // for (let i = 1; i < myTable.rows.length; i++) {
+//     //     console.log("row",i,"accounted for");
+//     //     myTable.row[i].append('<button id="delEmployee">Delete Employee</button>')
+//     // }
+    
+// }
+
+function deleteRow(){
+    console.log($(this).parent());
+    $(this).parent().parent().remove();
 }
