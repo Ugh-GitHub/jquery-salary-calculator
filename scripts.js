@@ -24,10 +24,10 @@ function processInput() {
     // input testing goes here
     // testInput();
     if (testInput()) {
-        
+    console.log('function block');
     
     // function to create a new table row, insert the input
-    
+    updateTableDOM(employeeObj());
 
     // function to clear the previous input fields
     clearFields();
@@ -65,6 +65,11 @@ function testInput() {
         //$('#idNumber').addClass('errorInput');
         errorTester = false;
     }
+    
+    // reset placeholder if number is put in and the error message is the current placeholder
+    if (!isNaN(Number(idNumber)) && $('#idNumber').attr('placeholder') == '*Needs Number*') {
+        $('#idNumber').attr('placeholder','Employee ID Number');
+    }
 
     // test annual salary is a number
     if (isNaN(Number(annualSalary))) {
@@ -77,6 +82,15 @@ function testInput() {
         errorTester = false;
     }
 
+    // reset placeholder if number is put in and the error message is the current placeholder
+    if (!isNaN(Number(annualSalary)) && $('#annualSalary').attr('placeholder') == '*Needs Number*') {
+        $('#annualSalary').attr('placeholder','Employee ID Number');
+    }
+
+    // if true, set all classes back to the basic to void out red text
+    // and to reset placeholder info
+    // Something here function call
+
     // return true otherwise
     return errorTester;
 }
@@ -84,32 +98,60 @@ function testInput() {
 function testFilled() {
     let errorTester = true;
 
-    let firstName = $('#firstName').val();
+    let firstName = $('#firstName');
     let lastName = $('#lastName').val();
     let idNumber = $( '#idNumber').val();
     let jobTitle = $( '#jobTitle').val();
     let annualSalary = $( '#annualSalary').val();
 
-    if (firstName.length == 0) {
-        $('#firstName').toggleClass('errorInput');
+    console.log(firstName.val());
+
+
+    if (firstName.val().length == 0) {
+        console.log('first name is blank');
+        $('#firstNameLabel').addClass('errorInput');
         errorTester = false;
     }
+    // if (firstName.val().length > 0 && $('#firstNameLabel').hasClass() == 'errorInput') {
+    //     $('#firstNameLabel').removeClass('errorInput');
+    // }
+
     if (lastName.length == 0) {
-        $('#lastName').toggleClass('errorInput');
+        console.log('last name is blank');
+        $('#lastNameLabel').addClass('errorInput');
         errorTester = false;
     }
+    // if (lastName.val().length > 0 && $('#lastNameLabel').hasClass() == 'errorInput') {
+    //     $('#lastNameLabel').removeClass('errorInput');
+    // }
+
     if (idNumber.length == 0) {
-        $('#idNumber').toggleClass('errorInput');
+        console.log('id number is blank');
+        $('#idNumberLabel').addClass('errorInput');
         errorTester = false;
     }
+    // if (idNumber.val().length > 0 && $('#idNumberLabel').hasClass() == 'errorInput') {
+    //     $('#idNumberLabel').removeClass('errorInput');
+    // }
+
     if (jobTitle.length == 0) {
-        $('#jobTitle').toggleClass('errorInput');
+        console.log('title is blank');
+        $('#jobTitleLabel').addClass('errorInput');
         errorTester = false;
     }
+    // if (jobTitle.val().length > 0 && $('#jobTitleLabel').hasClass() == 'errorInput') {
+    //     $('#jobTitleLabel').removeClass('errorInput');
+    // }
+
     if (annualSalary.length == 0) {
-        $('#annualSalary').toggleClass('errorInput');
+        console.log('annual salary is blank');
+        $('#annualSalaryLabel').addClass('errorInput');
         errorTester = false;
     }
+    // if (annualSalary.val().length > 0 && $('#annualSalaryLabel').hasClass() == 'errorInput') {
+    //     $('#annualSalaryLabel').removeClass('errorInput');
+    // }
+
     return errorTester;
 }
 
