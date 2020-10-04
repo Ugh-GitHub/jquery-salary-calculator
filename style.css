@@ -5,3 +5,7 @@ h1 {
 .errorInput {
     color: red;
 }
+
+.highCost {
+    background-color: red;
+}

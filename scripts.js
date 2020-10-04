@@ -26,13 +26,12 @@ function processInput() {
     // function to clear the previous input fields
     clearFields();
 
-    // function to calculate monthly costs
-    calculateCosts();
-
-    // function to append monthly costs
+    // function to calculate monthly costs & add to DOM
+    //calculateCosts();
 
     // function to test monthly costs exceeding $20,000 
     // if so, appending id to prompt CSS to turn text red
+    checkCosts(calculateCosts());
     }
 }
 
@@ -209,3 +208,13 @@ function calculateCosts() {
     return sum;
 }
 
+function checkCosts(cost) {
+    console.log('in checkCosts');
+    if (cost > 20000) {
+        $('#monthSum').addClass('highCost');
+    }
+    if (cost < 20000 && $('#monthSum').hasClass('highCost')) {
+        $('#monthSum').removeClass('highCost');
+    }
+    return true;
+}
