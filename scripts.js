@@ -1,23 +1,17 @@
 console.log("hello world");
 $(document).ready(onReady);
 
-// object to hold:
-// employee first name, 
-// last name, 
-// ID number, 
-// job title, 
-// annual salary
 
 let empList = []; // Employee list declaration
 
-{/* <input type="text" id="firstName" class="input" placeholder="Employee First Name">
-<input type="text" id="lastName" class="input" placeholder="Employee Last Name">
-<input type="text" id="idNumber" class="input" placeholder="Employee ID Number">
-<input type="text" id="jobTitle" class="input" placeholder="Employee Job Title">
-<input type="text" id="annualSalary" class="input" placeholder="Employee Annual Salary"> */}
-
 function onReady() {
+    // adding a new employee button
     $( '#submitEmployee' ).on('click',processInput);
+
+    // button to toggle deleting employee buttons
+
+    // button to delete employees
+
 }
 
 function processInput() {
@@ -205,9 +199,13 @@ function clearFields() {
 function calculateCosts() {
     let sum = 0;
     for (let i = 0; i < empList.length; i++) {
-        sum += empList[i];
+        sum += Number(empList[i].annualSalary);
     }
+    sum /= 12;
     // put a text function here to add the info to the dom
+    console.log('in caculateCosts');
+    $('#monthSum').empty();
+    $('#monthSum').text(`The total cost of salaries per month is: ${sum}`);
     return sum;
 }
 
